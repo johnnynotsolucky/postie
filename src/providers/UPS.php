@@ -344,6 +344,9 @@ class UPS extends Provider
 
         // Pack the content of the order into boxes
         $packedBoxes = $this->packOrder($order);
+        if (count($packedBoxes->getPackedBoxList()) === 0) {
+            return null;
+        }
 
         // Allow location and dimensions modification via events
         $this->beforeFetchRates($storeLocation, $packedBoxes, $order);
